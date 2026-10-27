@@ -101,6 +101,11 @@ export const storageService = {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('focus', () => this.syncWithBackend());
+      window.addEventListener('storage', (e) => {
+        if (!e.key || e.key.startsWith('annasetu_')) {
+          notifyChange();
+        }
+      });
     }
   },
 
@@ -520,6 +525,12 @@ export const storageService = {
         forRole: ROLES.DONOR,
         title: 'Volunteer Committed to Pickup',
         message: `${donation.assignedVolunteerName || 'A volunteer'} accepted your rescue and is en route.`,
+        donationId
+      });
+      this.addNotification({
+        forRole: ROLES.ADMIN,
+        title: 'Volunteer Confirmed Rescue',
+        message: `${donation.assignedVolunteerName || 'Volunteer'} accepted rescue #${donation.publicReference} (${donation.quantityMeals} meals). Now actively in transit!`,
         donationId
       });
     } else if (newStatus === DONATION_STATUS.VOLUNTEER_AT_PICKUP) {

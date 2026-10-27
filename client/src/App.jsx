@@ -128,7 +128,16 @@ export default function App() {
     };
 
     window.addEventListener('annasetu:stateChange', handleStateChange);
-    return () => window.removeEventListener('annasetu:stateChange', handleStateChange);
+    window.addEventListener('storage', handleStateChange);
+
+    // Auto-poll every 1.5s to ensure cross-tab & multi-device updates appear live without manual refresh
+    const pollInterval = setInterval(handleStateChange, 1500);
+
+    return () => {
+      window.removeEventListener('annasetu:stateChange', handleStateChange);
+      window.removeEventListener('storage', handleStateChange);
+      clearInterval(pollInterval);
+    };
   }, []);
 
   // Current active volunteer object

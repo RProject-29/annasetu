@@ -55,6 +55,7 @@ export const AdminDashboard = ({
   const unreviewed = donations.filter(d => d.status === DONATION_STATUS.SUBMITTED || d.status === DONATION_STATUS.UNDER_REVIEW);
   const awaitingOffers = donations.filter(d => d.status === DONATION_STATUS.ASSIGNED_AWAITING_ACCEPTANCE);
   const activeOps = donations.filter(d =>
+    d.status === DONATION_STATUS.ASSIGNED_AWAITING_ACCEPTANCE ||
     d.status === DONATION_STATUS.ACCEPTED ||
     d.status === DONATION_STATUS.VOLUNTEER_AT_PICKUP ||
     d.status === DONATION_STATUS.PICKED_UP ||
@@ -219,13 +220,13 @@ export const AdminDashboard = ({
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)' }}>Active Rescues</span>
+            <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)' }}>Active & Confirmed</span>
             <span style={{ fontSize: '20px', fontWeight: 800, color: '#60a5fa' }}>
               {activeOps.length}
             </span>
           </div>
           <p style={{ fontSize: '11px', color: 'var(--text-tertiary)', marginTop: '4px' }}>
-            In transit / at pickup
+            {awaitingOffers.length > 0 ? `${awaitingOffers.length} offered • ` : ''}Confirmed & in transit
           </p>
         </div>
 
@@ -296,7 +297,7 @@ export const AdminDashboard = ({
           {[
             { id: 'ALL', label: `All (${donations.length})` },
             { id: 'UNREVIEWED', label: `Pending (${unreviewed.length})` },
-            { id: 'ACTIVE', label: `Active (${activeOps.length})` },
+            { id: 'ACTIVE', label: `Active & Confirmed (${activeOps.length})` },
             { id: 'PROOFS', label: `Proofs (${proofsAwaiting.length})` },
             { id: 'CORRIDORS', label: `🗺️ Live Map & Corridors` },
             { id: 'VOLUNTEERS', label: `Volunteers (${volunteers.length})` },
@@ -731,6 +732,27 @@ export const AdminDashboard = ({
                     </td>
                   </tr>
                 ))}
+                {filterList(
+                  activeTab === 'UNREVIEWED' ? unreviewed :
+                  activeTab === 'ACTIVE' ? activeOps :
+                  activeTab === 'PROOFS' ? proofsAwaiting :
+                  donations
+                ).length === 0 && (
+                  <tr>
+                    <td colSpan="7" style={{ textAlign: 'center', padding: '36px 16px', color: 'var(--text-tertiary)' }}>
+                      <p style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-secondary)' }}>
+                        No reports found in this view
+                      </p>
+                      <p style={{ fontSize: '12px', marginTop: '6px', maxWidth: '420px', margin: '6px auto 0', lineHeight: 1.5 }}>
+                        {activeTab === 'UNREVIEWED'
+                          ? 'All pending reports have been reviewed! When a volunteer accepts an order, check "Active & Confirmed" or "All".'
+                          : activeTab === 'ACTIVE'
+                          ? 'No active rescues currently in progress. Dispatch a report from "Pending" or view "All".'
+                          : 'No matching items. Try switching to the "All" tab or clearing the search.'}
+                      </p>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
