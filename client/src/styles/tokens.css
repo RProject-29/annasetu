@@ -1,0 +1,105 @@
+/* AnnaSetu Design Tokens — Warm Light Creamy Theme */
+:root {
+  /* Color Palette - Core Neutrals (Warm Creamy Ivory Aesthetic) */
+  --bg-primary: #F8F4EC;          /* Canvas cream background */
+  --bg-secondary: #F3ECE1;        /* Slightly deeper warm cream for phone frame screen */
+  --bg-navbar: #FFFFFF;           /* Distinct crisp elevated white for top navbar */
+  --border-navbar: #E4D8C6;       /* Distinct warm border for top navbar */
+  --header-btn-bg: #F3EBE0;       /* Distinct warm neutral for header icon buttons */
+  --bg-surface: #FFFFFF;          /* Pure crisp white for cards and modal sheets */
+  --bg-surface-elevated: #FAF5ED; /* Elevated cards, badge backgrounds, input insets */
+  --bg-surface-hover: #F2ECE1;    /* Subtle interactive hover */
+  --border-subtle: #ECE4D8;       /* Very soft divider borders */
+  --border-default: #DFD5C6;      /* Standard card and input borders */
+  --border-focus: #D97706;        /* Warm amber focus highlight */
+
+  /* Typography Colors — High Contrast, Warm Charcoal & Stone */
+  --text-primary: #1C1917;        /* Warm charcoal obsidian (strong legibility) */
+  --text-secondary: #57534E;      /* Medium warm stone for subheadings & body */
+  --text-tertiary: #8C827A;       /* Muted warm stone for timestamps & captions */
+  --text-inverse: #FFFFFF;        /* White text for saturated buttons & chips */
+
+  /* Brand Accent: Warm Amber / Saffron (Food, Warmth & Community) */
+  --brand-50: #FFFBEB;
+  --brand-100: #FEF3C7;
+  --brand-500: #D97706;           /* Saffron gold / amber */
+  --brand-600: #B45309;           /* Rich terracotta amber */
+  --brand-700: #92400E;
+  --brand-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --brand-gradient-subtle: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  --brand-glow: rgba(217, 119, 6, 0.2);
+
+  /* Semantic - Confirmed / Completed / Safe (Fresh Emerald on Cream) */
+  --status-success-bg: #E8F8EE;
+  --status-success-border: #86EFAC;
+  --status-success-text: #065F46;
+  --status-success-solid: #059669;
+
+  /* Semantic - Urgent / Deadline Near (Rich Amber / Tangerine) */
+  --status-urgent-bg: #FEF3C7;
+  --status-urgent-border: #FCD34D;
+  --status-urgent-text: #92400E;
+  --status-urgent-solid: #D97706;
+
+  /* Semantic - Error / Cancelled / Expired (Deep Crimson) */
+  --status-danger-bg: #FEE2E2;
+  --status-danger-border: #FCA5A5;
+  --status-danger-text: #991B1B;
+  --status-danger-solid: #DC2626;
+
+  /* Semantic - Informational / Under Review / Assigned (Royal Sky Blue) */
+  --status-info-bg: #EFF6FF;
+  --status-info-border: #BFDBFE;
+  --status-info-text: #1E40AF;
+  --status-info-solid: #2563EB;
+
+  /* Typography - Sleek & Modern (not bulky) */
+  --font-family-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-family-display: 'Outfit', sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
+
+  --text-xs: 0.68rem;     /* ~10px */
+  --text-sm: 0.76rem;     /* ~11.5px */
+  --text-base: 0.86rem;   /* ~13px */
+  --text-lg: 0.95rem;     /* ~14.5px */
+  --text-xl: 1.05rem;     /* ~16px */
+  --text-2xl: 1.18rem;    /* ~18px */
+  --text-3xl: 1.35rem;    /* ~20.5px */
+
+  /* Spacing */
+  --space-1: 0.25rem;     /* 4px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-8: 2rem;        /* 32px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-12: 3rem;       /* 48px */
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows — Soft Warm Sunlight Shadows for Cream Aesthetic */
+  --shadow-sm: 0 1px 3px rgba(44, 33, 20, 0.05), 0 1px 2px rgba(44, 33, 20, 0.03);
+  --shadow-md: 0 4px 10px -2px rgba(44, 33, 20, 0.07), 0 2px 4px -2px rgba(44, 33, 20, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(44, 33, 20, 0.1), 0 4px 8px -4px rgba(44, 33, 20, 0.05);
+  --shadow-glow: 0 0 16px var(--brand-glow);
+
+  /* Mobile Touch Target Standards */
+  --touch-target-min: 44px;
+  --bottom-nav-height: 0px; /* Removed bottom nav as requested */
+  --header-height: 64px;
+
+  /* Safe area insets for modern mobile browsers */
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}

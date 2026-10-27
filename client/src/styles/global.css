@@ -1,0 +1,398 @@
+/* AnnaSetu Global & Base Styles — Mobile-First Responsive */
+@import './tokens.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: 650;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--brand-500);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--brand-700);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 1px 2px rgba(44, 33, 20, 0.04);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--brand-500);
+  box-shadow: 0 0 0 3px var(--brand-glow);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Mobile Experience Wrapper & Realistic Smartphone Frame
+   Laptop / Tablet: Centered smartphone frame on pure WHITE background (#ffffff)
+   Mobile (< 768px): Native full screen with ZERO borders and creamy theme
+   ========================================================================== */
+.mobile-experience-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Base phone mockup structure (Mobile default: borderless, full screen, native) */
+.phone-mockup-frame {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+.phone-notch,
+.phone-home-indicator,
+.desktop-admin-hint {
+  display: none !important;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.app-main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-content-scroll {
+  flex: 1;
+  padding: var(--space-4) var(--space-4) calc(var(--space-6) + var(--safe-area-bottom));
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================================================
+   LAPTOP & TABLET VIEWPORT (>= 768px):
+   1. The background outside the phone MUST be pure WHITE (#ffffff).
+   2. Centered realistic smartphone frame.
+   ========================================================================== */
+@media (min-width: 768px) {
+  .mobile-experience-wrapper {
+    background-color: #ffffff !important; /* Pure white background outside mobile phone */
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  .phone-mockup-frame {
+    position: relative;
+    width: 400px;
+    height: 844px;
+    max-height: calc(100vh - 48px);
+    border-radius: 52px;
+    padding: 10px;
+    background: #1c1917; /* Dark titanium chassis */
+    box-sizing: border-box;
+    /* Realistic chassis rim + bevel highlight + deep soft shadow */
+    box-shadow:
+      0 0 0 2px #d6d3d1,                       /* Metallic outer edge */
+      0 0 0 7px #292524,                       /* Phone bezel chassis */
+      0 0 0 9px #44403c,                       /* Inner bezel highlight */
+      0 20px 45px -10px rgba(44, 33, 20, 0.22),
+      0 35px 80px -20px rgba(44, 33, 20, 0.15);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    flex-shrink: 0;
+  }
+
+  /* Hardware notch at top center of phone */
+  .phone-notch {
+    display: flex !important;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 28px;
+    background: #1c1917;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    pointer-events: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .phone-speaker {
+    width: 42px;
+    height: 4px;
+    background: #292524;
+    border-radius: 2px;
+  }
+
+  .phone-camera {
+    width: 10px;
+    height: 10px;
+    background: #0c0a09;
+    border-radius: 50%;
+    border: 1.5px solid #292524;
+    position: relative;
+  }
+
+  .phone-camera::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(30, 58, 138, 0.7);
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+  }
+
+  .phone-screen {
+    border-radius: 42px;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--bg-primary);
+  }
+
+  /* iPhone Home Indicator Line */
+  .phone-home-indicator {
+    display: block !important;
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 4px;
+    background-color: #78716c;
+    border-radius: 9999px;
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* External Desktop Helper Link to Admin */
+  .desktop-admin-hint {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    font-size: 13px;
+    color: #78716c;
+    font-weight: 500;
+  }
+
+  .desktop-admin-link {
+    color: var(--brand-600);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .desktop-admin-link:hover {
+    color: var(--brand-700);
+    text-decoration: underline;
+  }
+
+  /* Make modals inside phone preview stay inside the phone screen on desktop */
+  .phone-screen .modal-overlay {
+    position: absolute;
+    inset: 0;
+    border-radius: 42px;
+  }
+}
+
+/* ==========================================================================
+   Admin Main Viewport — Dedicated Operations Portal (Preserved Dark Mode)
+   ========================================================================== */
+.admin-portal-page {
+  /* Strictly retain dark slate theme for the Admin desktop surface */
+  --bg-primary: #0b1120;
+  --bg-secondary: #131d31;
+  --bg-surface: #1e293b;
+  --bg-surface-elevated: #283548;
+  --bg-surface-hover: #334155;
+  --border-subtle: #1e293b;
+  --border-default: #334155;
+  --border-focus: #f59e0b;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --text-inverse: #0b1120;
+  --status-success-bg: rgba(16, 185, 129, 0.15);
+  --status-success-border: #10b981;
+  --status-success-text: #34d399;
+  --status-urgent-bg: rgba(245, 158, 11, 0.15);
+  --status-urgent-border: #f59e0b;
+  --status-urgent-text: #fbbf24;
+  --status-danger-bg: rgba(239, 68, 68, 0.15);
+  --status-danger-border: #ef4444;
+  --status-danger-text: #f87171;
+  --status-info-bg: rgba(59, 130, 246, 0.15);
+  --status-info-border: #3b82f6;
+  --status-info-text: #60a5fa;
+
+  background-color: #0b1120;
+  color: #f8fafc;
+  min-height: 100vh;
+}
+
+.admin-portal-page input,
+.admin-portal-page textarea,
+.admin-portal-page select {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+.admin-main-viewport {
+  flex: 1;
+  background-color: var(--bg-primary);
+  padding: var(--space-4);
+  overflow-y: auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+@media (min-width: 768px) {
+  .admin-main-viewport {
+    padding: var(--space-6) var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .admin-main-viewport {
+    padding: var(--space-6) var(--space-8);
+  }
+}
+
+/* ==========================================================================
+   Utility Animations
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.88; transform: scale(1.015); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.22s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

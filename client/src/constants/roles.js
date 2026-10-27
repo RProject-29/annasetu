@@ -1,0 +1,15 @@
+export const ROLES = {
+  DONOR: 'DONOR',
+  VOLUNTEER: 'VOLUNTEER',
+  ADMIN: 'ADMIN'
+};
+
+export const VOLUNTEER_STATUS = {
+  PENDING: 'PENDING',
+  VERIFIED_ACTIVE: 'VERIFIED_ACTIVE',
+  REJECTED: 'REJECTED',
+  SUSPENDED: 'SUSPENDED'
+};
+
+export { DONATION_STATUS } from './donationStatus';
+

@@ -1,0 +1,10 @@
+/* Reset Vite defaults; delegate to AnnaSetu Design Tokens & Global CSS */
+@import './styles/global.css';
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
